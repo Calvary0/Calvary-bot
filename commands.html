@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Commands - My Discord Bot</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="commands.html">Commands</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="support.html">Support</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-content">
+      <h1>Bot Commands</h1>
+      <div class="content-wrapper">
+        <h2>Available Commands</h2>
+        <p>Here are all the commands you can use with our Discord Moderator bot. All commands are designed to be simple and effective.</p>
+
+        <div class="command-list">
+          <div class="command-item">
+            <h3>!help</h3>
+            <p>Get information about all available bot commands and their usage.</p>
+            <span class="usage">Usage: !help [command]</span>
+          </div>
+
+          <div class="command-item">
+            <h3>!mute</h3>
+            <p>Mute a user for a specified duration. The user won't be able to send messages or join voice channels.</p>
+            <span class="usage">Usage: !mute @user [duration] [reason]</span>
+          </div>
+
+          <div class="command-item">
+            <h3>!warn</h3>
+            <p>Issue a warning to a user. Warnings are logged and can be reviewed by moderators.</p>
+            <span class="usage">Usage: !warn @user [reason]</span>
+          </div>
+
+          <div class="command-item">
+            <h3>!prefix</h3>
+            <p>Change the bot's command prefix for your server. Useful for avoiding conflicts with other bots.</p>
+            <span class="usage">Usage: !prefix [new_prefix]</span>
+          </div>
+
+          <div class="command-item">
+            <h3>!kick</h3>
+            <p>Kick a user from the server. They can rejoin if they have an invite link.</p>
+            <span class="usage">Usage: !kick @user [reason]</span>
+          </div>
+
+          <div class="command-item">
+            <h3>!ban</h3>
+            <p>Ban a user from the server. They cannot rejoin unless unbanned.</p>
+            <span class="usage">Usage: !ban @user [reason]</span>
+          </div>
+
+          <div class="command-item">
+            <h3>!clear</h3>
+            <p>Delete a specified number of messages from the current channel.</p>
+            <span class="usage">Usage: !clear [number]</span>
+          </div>
+
+          <div class="command-item">
+            <h3>!info</h3>
+            <p>Display information about a user, including their join date and roles.</p>
+            <span class="usage">Usage: !info @user</span>
+          </div>
+        </div>
+
+        <h2>Permission Requirements</h2>
+        <p>Most commands require appropriate permissions to use. Make sure the bot has the necessary permissions in your server:</p>
+        <ul>
+          <li>Manage Messages</li>
+          <li>Kick Members</li>
+          <li>Ban Members</li>
+          <li>Manage Roles</li>
+          <li>Send Messages</li>
+        </ul>
+
+        <div class="cta-section">
+          <a href="https://discord.com/oauth2/authorize?client_id=1080521232342065193" target="_blank" class="btn">Add to Discord</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© Calvary 2025 ill.rdy. All rights reserved.</p>
+  </footer>
+</body>
+</html>
