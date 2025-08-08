@@ -26,26 +26,31 @@ header {
 
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  min-height: 80px;
+  gap: 0;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: flex-start;
+  gap: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
+  height: 100%;
 }
 
-.logo-icon {
-  width: 40px;
-  height: 40px;
-  color: white;
+.logo-image {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  object-position: center;
   transition: all 0.3s ease;
 }
 
@@ -63,8 +68,12 @@ header {
   list-style: none;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   width: 100%;
   max-width: 600px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: 20%;
 }
 
 .nav-links a {
@@ -380,6 +389,15 @@ footer {
 
   .nav-links {
     gap: 15px;
+  }
+
+  .logo-image {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .logo-text {
+    font-size: 1.2rem;
   }
 }
 
