@@ -93,6 +93,9 @@ header {
   position: relative;
   height: 100vh;
   overflow: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+  transition: transform 0.1s ease-out;
 }
 
 .hero-content {
@@ -106,6 +109,7 @@ header {
   padding-top: 120px;
   text-align: center;
   color: white;
+  transform: translateZ(0);
 }
 
 .hero-content h1 {

@@ -63,6 +63,19 @@
       </div>
     </div>
   </footer>
+  
+  <script>
+    // Parallax effect for hero section
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      const rate = scrolled * -0.5;
+      
+      if (hero) {
+        hero.style.transform = `translateY(${rate}px)`;
+      }
+    });
+  </script>
 </body>
 </html>
 
