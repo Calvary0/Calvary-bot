@@ -9,7 +9,13 @@ dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT || 5001
-const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/discord-bot'
+const MONGO_URI = process.env.MONGODB_URI
+
+if (!MONGO_URI) {
+  console.error('❌ MONGODB_URI не задан в .env')
+  process.exit(1)
+}
+console.log('🔗 Using MongoDB URI:', MONGO_URI)
 
 app.use(cors({
   origin: process.env.CORS_ORIGIN?.split(',') || ['http://localhost:3000'],
@@ -20,7 +26,7 @@ app.use(express.json())
 mongoose.connect(MONGO_URI)
   .then(() => console.log('✅ MongoDB connected'))
   .catch((err) => {
-    console.error('❌ MongoDB connection error:', err.message)
+    console.error('❌ MongoDB connection error:', err)
     process.exit(1)
   })
 
@@ -34,4 +40,3 @@ app.get('/api/health', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 API server running on port ${PORT}`)
 })
-
