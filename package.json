@@ -1,0 +1,31 @@
+{
+  "name": "amaribot-monorepo",
+  "version": "1.0.0",
+  "description": "Discord Bot Dashboard - Monorepo with React Frontend and Node.js API",
+  "private": true,
+  "workspaces": [],
+  "scripts": {
+    "install:all": "cd api && npm install && cd ../dashboard && npm install",
+    "build:frontend": "cd dashboard && npm run build",
+    "start:api": "cd api && npm start",
+    "dev:api": "cd api && npm run dev",
+    "dev:frontend": "cd dashboard && npm run dev",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:frontend\""
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "dashboard",
+    "react",
+    "express",
+    "monorepo"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+
+
+

@@ -3,6 +3,10 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  
+  // базовый путь для сборки
+  base: '/', // локально и на GitHub Pages, если хочешь другой - замени на '/Amaribot-clone/'
+
   server: {
     port: 3000,
     proxy: {
@@ -11,6 +15,12 @@ export default defineConfig({
         changeOrigin: true
       }
     }
+  },
+
+  build: {
+    outDir: 'dist', // куда собирается проект
   }
 })
+
+
 

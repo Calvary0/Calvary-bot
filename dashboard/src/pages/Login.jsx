@@ -8,16 +8,26 @@ export default function Login() {
   const [searchParams] = useSearchParams()
   const { login } = useAuth()
 
+  const getApiUrl = () => {
+    const url = import.meta.env.VITE_API_URL || '/api'
+    return url.endsWith('/') ? url.slice(0, -1) : url
+  }
+
   useEffect(() => {
     const code = searchParams.get('code')
     if (code) {
       handleCallback(code)
+    } else if (localStorage.getItem('discord_token')) {
+      navigate('/dashboard')
     }
-  }, [])
+  }, [navigate, searchParams])
 
   const handleCallback = async (code) => {
     try {
-      const response = await fetch('/api/auth/callback', {
+      const apiUrl = getApiUrl()
+      console.log('API URL для callback:', `${apiUrl}/auth/callback`)
+
+      const response = await fetch(`${apiUrl}/auth/callback`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code }),
@@ -26,8 +36,10 @@ export default function Login() {
       if (!response.ok) throw new Error('Auth failed')
 
       const data = await response.json()
+      console.log('JWT с сервера:', data.token)
+      localStorage.setItem('discord_token', data.token)
       login(data.token)
-      navigate('/')
+      navigate('/dashboard')
     } catch (error) {
       console.error('Login error:', error)
     }
@@ -65,4 +77,3 @@ export default function Login() {
     </div>
   )
 }
-

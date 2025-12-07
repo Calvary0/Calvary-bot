@@ -17,8 +17,22 @@ if (!MONGO_URI) {
 }
 console.log('🔗 Using MongoDB URI:', MONGO_URI)
 
+// CORS настройки для production и development
+const allowedOrigins = process.env.CORS_ORIGIN 
+  ? process.env.CORS_ORIGIN.split(',').map(origin => origin.trim())
+  : ['http://localhost:3000', 'http://localhost:8080']
+
 app.use(cors({
-  origin: process.env.CORS_ORIGIN?.split(',') || ['http://localhost:3000'],
+  origin: (origin, callback) => {
+    // Разрешаем запросы без origin (например, Postman, curl)
+    if (!origin) return callback(null, true)
+    
+    if (allowedOrigins.includes(origin) || process.env.NODE_ENV !== 'production') {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
   credentials: true
 }))
 app.use(express.json())
