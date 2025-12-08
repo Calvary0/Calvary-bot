@@ -10,7 +10,9 @@
     "start:api": "cd api && npm start",
     "dev:api": "cd api && npm run dev",
     "dev:frontend": "cd dashboard && npm run dev",
-    "dev": "concurrently \"npm run dev:api\" \"npm run dev:frontend\""
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:frontend\"",
+    "predeploy": "cd dashboard && npm run build",
+    "deploy": "cd dashboard && npx gh-pages -d dist"
   },
   "keywords": [
     "discord",
@@ -23,9 +25,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "gh-pages": "^5.1.1"
   }
 }
-
 
 
