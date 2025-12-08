@@ -1,0 +1,17 @@
+# Для Apache - SPA роутинг
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Правильные MIME типы для JavaScript
+<IfModule mod_mime.c>
+  AddType application/javascript js
+  AddType application/javascript mjs
+  AddType text/javascript js
+</IfModule>
+
