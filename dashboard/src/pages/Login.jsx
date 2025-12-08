@@ -18,7 +18,7 @@ export default function Login() {
     if (code) {
       handleCallback(code)
     } else if (localStorage.getItem('discord_token')) {
-      navigate('/dashboard')
+      navigate('/')
     }
   }, [navigate, searchParams])
 
@@ -39,7 +39,7 @@ export default function Login() {
       console.log('JWT с сервера:', data.token)
       localStorage.setItem('discord_token', data.token)
       login(data.token)
-      navigate('/dashboard')
+      navigate('/')
     } catch (error) {
       console.error('Login error:', error)
     }

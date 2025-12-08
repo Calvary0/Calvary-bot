@@ -53,11 +53,17 @@ export default function GuildSelect() {
             </h1>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                <img
-                  src={user?.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : '/default-avatar.png'}
-                  alt={user?.username}
-                  className="w-8 h-8 rounded-full"
-                />
+                {user?.avatar ? (
+                  <img
+                    src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
+                    alt={user?.username}
+                    className="w-8 h-8 rounded-full"
+                  />
+                ) : (
+                  <div className="w-8 h-8 rounded-full bg-discord-blurple flex items-center justify-center text-white text-xs font-bold">
+                    {user?.username?.charAt(0)?.toUpperCase() || '?'}
+                  </div>
+                )}
                 <span>{user?.username}</span>
               </div>
               <button

@@ -1,7 +1,23 @@
 import axios from 'axios'
 
+// Получаем URL API из переменной окружения или используем относительный путь
+const getApiBaseURL = () => {
+  const envUrl = import.meta.env.VITE_API_URL
+  if (envUrl) {
+    // Убираем trailing slash если есть
+    return envUrl.endsWith('/') ? envUrl.slice(0, -1) : envUrl
+  }
+  // Для production используем абсолютный URL, для dev - относительный
+  if (import.meta.env.PROD) {
+    // В production можно использовать полный URL или оставить относительный
+    // Если API на том же домене - используем относительный путь
+    return '/api'
+  }
+  return '/api'
+}
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: getApiBaseURL(),
   headers: {
     'Content-Type': 'application/json',
   },
