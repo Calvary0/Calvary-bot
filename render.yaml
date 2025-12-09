@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: calvary-api
+    env: node
+    rootDir: api
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "node server.js"
+
+  - type: worker
+    name: calvary-discord-bot
+    env: node
+    rootDir: api
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "node bot.js"
+# Конфигурация для Render (опционально)
+# Если используете Static Site на Render, этот файл не нужен
+# Но он может быть полезен для документации
+
+# Для Static Site на Render:
+# - Build Command: cd dashboard && npm install && npm run build
+# - Publish Directory: dashboard/dist
+
+# Для Web Service на Render (если хотите использовать Node.js для раздачи статики):
+# - Build Command: cd dashboard && npm install && npm run build
+# - Start Command: cd dashboard && npx serve -s dist -l 3000
+
