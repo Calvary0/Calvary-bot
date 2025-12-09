@@ -8,6 +8,19 @@ const BOT_TOKEN = process.env.DISCORD_BOT_TOKEN
 const API_BASE = process.env.DASHBOARD_API || process.env.API_URL || 'http://localhost:5001'
 const BOT_API_TOKEN = process.env.BOT_API_TOKEN
 
+// Кэш для настроек серверов (вынесен наружу для доступа из API)
+const configCache = new Map()
+const CACHE_TTL = 60 * 1000 // 1 минута
+
+// Очистка кэша при изменении настроек (можно вызывать из API)
+export function clearGuildCache(guildId) {
+  if (guildId) {
+    configCache.delete(guildId)
+  } else {
+    configCache.clear()
+  }
+}
+
 if (!BOT_TOKEN) {
   console.warn('⚠️  DISCORD_BOT_TOKEN не задан. Бот не будет запущен.')
   // Не останавливаем процесс, чтобы API продолжало работать
@@ -20,10 +33,6 @@ if (!BOT_TOKEN) {
       GatewayIntentBits.GuildMembers,
     ],
   })
-
-  // Кэш для настроек серверов
-  const configCache = new Map()
-  const CACHE_TTL = 60 * 1000 // 1 минута
 
   // Функция для получения настроек сервера из API
   async function getGuildConfig(guildId) {
@@ -57,15 +66,6 @@ if (!BOT_TOKEN) {
     const config = await getGuildConfig(guildId)
     configCache.set(guildId, { config, timestamp: Date.now() })
     return config
-  }
-
-  // Очистка кэша при изменении настроек (можно вызывать из API)
-  export function clearGuildCache(guildId) {
-    if (guildId) {
-      configCache.delete(guildId)
-    } else {
-      configCache.clear()
-    }
   }
 
   // События бота

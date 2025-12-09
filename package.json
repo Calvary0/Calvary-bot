@@ -2,6 +2,7 @@
   "name": "amaribot-monorepo",
   "version": "1.0.0",
   "description": "Discord Bot Dashboard - Monorepo with React Frontend and Node.js API",
+  "type": "module",
   "private": true,
   "workspaces": [],
   "scripts": {
