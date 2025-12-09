@@ -8,8 +8,10 @@
 
 ```
 .
+├── src/
+│   └── bot.js        # Discord бот (автоматически запускается с API)
 ├── api/              # Backend (Node.js + Express)
-│   ├── server.js     # Точка входа для API
+│   ├── server.js     # Точка входа для API (импортирует бота)
 │   └── package.json
 ├── dashboard/        # Frontend (React + Vite)
 │   ├── src/
@@ -31,9 +33,17 @@
 **Переменные окружения:**
 - `PORT` - порт (Render автоматически установит)
 - `MONGODB_URI` - URI подключения к MongoDB
-- `CORS_ORIGIN` - разрешённые источники для CORS (например, `https://your-frontend.onrender.com`)
-- `JWT_SECRET` - секретный ключ для JWT (если используется)
+- `CORS_ORIGIN` - разрешённые источники для CORS (например, `https://calvary0.github.io`)
+- `DISCORD_CLIENT_ID` - Client ID Discord приложения
+- `DISCORD_CLIENT_SECRET` - Client Secret Discord приложения
+- `DISCORD_REDIRECT_URI` - Redirect URI для OAuth2 (например, `https://calvary0.github.io/Calvary-bot/login`)
+- `DISCORD_BOT_TOKEN` - Токен Discord бота (обязателен для работы бота)
+- `JWT_SECRET` - секретный ключ для JWT
+- `BOT_API_TOKEN` - токен для защиты API эндпоинта `/guild/:id/config`
+- `DASHBOARD_API` или `API_URL` - URL API сервиса (для бота)
 - `NODE_ENV` - `production`
+
+**Важно:** Бот автоматически запускается вместе с API при старте сервера через `import '../src/bot.js'` в `server.js`. Если `DISCORD_BOT_TOKEN` не задан, бот не запустится, но API продолжит работать.
 
 ### 2. Frontend Service (Dashboard)
 

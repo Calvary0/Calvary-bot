@@ -47,9 +47,11 @@ export default function Login() {
 
   const handleLogin = () => {
     const clientId = import.meta.env.VITE_DISCORD_CLIENT_ID
-    const redirectUri = encodeURIComponent(`${window.location.origin}/login`)
+    // Используем переменную окружения для redirect URI или текущий origin
+    const redirectUri = import.meta.env.VITE_DISCORD_REDIRECT_URI || `${window.location.origin}/login`
+    const encodedRedirectUri = encodeURIComponent(redirectUri)
     const scope = encodeURIComponent('identify guilds')
-    const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`
+    const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodedRedirectUri}&response_type=code&scope=${scope}`
 
     window.location.href = discordAuthUrl
   }
